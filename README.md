@@ -12,7 +12,14 @@ Detailed information is available on the [MacStealer: Wi-Fi Client Isolation Byp
 
 The Wi-Fi Alliance and affected parties were informed on all discovered issues.
 
-Once publicly available, we will list an overview of security advisories here.
+At the time of writing, the following security advisories are available:
+
+- [Cisco Security Advisory](https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-wifi-ffeb-22epcEWu), *"Framing Frames (...) Affecting Multiple Cisco Products"*.
+- [Ubiquiti](https://community.ui.com/releases/airMAX-M-6-3-10/2bb93457-7a7c-4edf-ade4-3c200fcf1808) airMAX M, *"Security workaround for CVE-2022-47522"*.
+- [LANCOM Systems](https://www.lancom-systems.com/service-support/general-security-information), *"Information regarding the paper „Framing Frames“ ([Knowledge Base](https://support.lancom-systems.com/knowledge/pages/viewpage.action?pageId=132776273))"*.
+- [Aruba Product Security Advisory](https://www.arubanetworks.com/assets/alert/ARUBA-PSA-2023-005.txt), *"All currently supported ArubaOS (...) versions are affected"*.
+- [Mist Security Advisory](https://www.mist.com/documentation/mist-security-advisory-bypassing-wi-fi-encryption-by-manipulating-transmit-queues/), *"Clients connecting to Mist Access Points could be targeted with this attack"*.
+- [Ruckus Networks](https://support.ruckuswireless.com/security_bulletins/317), *"Security Bulletin for CVE-2022-47522"*.
 
 ## Talks
 
@@ -20,6 +27,9 @@ Parts of this work are presented at the following symposiums and industry confer
 
 Real World Crypto 2023:
 - [Framing Frames: Bypassing Wi-Fi Encryption by Manipulating Transmit Queues](https://rwc.iacr.org/2023/program.php)
+
+Centre for Cybersecurity Belgium | Connect & Share 2023:
+- [The State of Wi-Fi Security and Vulnerabilities in Client Isolation](https://app.livestorm.co/ccb/centre-for-cybersecurity-belgium-ccb-connect-and-share-event-qctr)
 
 Black Hat Asia 2023:
 - [Sweet Dreams: Abusing Sleep Mode to Break Wi-Fi Encryption and Disrupt WPA2/3 Networks](https://www.blackhat.com/asia-23/briefings/schedule/index.html#sweet-dreams-abusing-sleep-mode-to-break-wi-fi-encryption-and-disrupt-wpa-networks-30942)
