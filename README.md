@@ -2,11 +2,131 @@
 
 This repository summarizes information for the *'Framing Frames'* publication at [USENIX Security 2023](https://www.usenix.org/conference/usenixsecurity23/presentation/schepers) ([pdf](https://papers.mathyvanhoef.com/usenix2023-wifi.pdf)).
 
-## MacStealer: Wi-Fi Client Isolation Bypass
+Furthermore, we provide proof-of-concepts implemented as test cases for the [Wi-Fi Framework](https://github.com/domienschepers/wifi-framework):
+* [Leaking Frames from the FreeBSD Queue](#leaking-frames-from-the-freebsd-queue).
+* [Queueing SA Query Requests](#queueing-sa-query-requests).
+
+## Wi-Fi Client Isolation Bypass
 
 The [MacStealer](https://github.com/vanhoefm/macstealer) repository provides a tool to test Wi-Fi networks for **client isolation bypasses (CVE-2022-47522). Our attack can intercept (steal) traffic toward other clients at the MAC layer**, even if clients are prevented from communicating with each other.
 
-Detailed information is available on the [MacStealer: Wi-Fi Client Isolation Bypass](https://github.com/vanhoefm/macstealer) repository.
+More information is available on the [MacStealer: Wi-Fi Client Isolation Bypass](https://github.com/vanhoefm/macstealer) repository.
+
+## Leaking Frames from the FreeBSD Queue
+
+As a proof-of-concept we provide a test case for the [Wi-Fi Framework](https://github.com/domienschepers/wifi-framework) (see [usage instructions](https://github.com/domienschepers/wifi-framework/blob/master/docs/USAGE.md)).
+
+#### Description
+
+In this [test case](framework/test-queue-leak-freebsd.py), we transmit an encrypted echo request frame with the sleep-bit set causing its echo reply frame to be buffered by the access point.
+We then start an optimized reconnection (that is, skipping authentication) and after the association (that is, prior to the 4-Way handshake) we wake up the client with an arbitrary frame without setting the sleep-bit.
+Since we did not yet derive a new pairwise encryption key using the 4-Way handshake, the buffered data (in this case an echo reply frame) should not be transmitted.
+However, since the FreeBSD AP leaks frames by falling back on the group encryption key, we can now listen for such frames using the group key from our first session and verify if the access point is vulnerable.
+
+#### Patch
+
+The following commit prevents FreeBSD from falling back on the multicast encryption key:
+- [net80211: fail for unicast traffic without unicast key](https://github.com/freebsd/freebsd-src/commit/61605e0ae5d8f34b89b8e71e393f3006f511e86a)
+
+#### Start the FreeBSD Access Point
+
+First, we need to set up a FreeBSD AP.
+A configuration file for WPA2-Personal is provided in [freebsd-hostapd.conf](framework/freebsd-hostapd.conf).
+
+To start the access point, as well as a DHCP daemon, we provide the [freebsd-setup-ap.sh](framework/freebsd-setup-ap.sh) script:
+
+```
+./freebsd-setup-ap.sh rum0
+```
+
+#### Run the Wi-Fi Framework Test Case
+
+Using the Wi-Fi Framework, load the appropriate network configuration to use WPA2-Personal:
+
+```
+cd setup; ./load-config.sh wpa2-personal
+```
+
+Finally, we can run the client to execute the `queue-leak-freebsd` test case:
+
+```
+/run.py wlan0 queue-leak-freebsd
+```
+
+After successful execution, the test case will report our echo reply frame was encrypted using the group key.
+
+<p align="center">
+	<img width="750" src="framework/example-output-freebsd.jpg">
+	<br />
+	<em>Example output for the queue leak attack using a FreeBSD 13.1 AP and Sitecom WL-172 with Ralink (rum) driver.</em>
+</p>
+
+#### Troubleshooting
+
+- Verify the client can connect to the FreeBSD AP and successfully issue ping commands:
+
+```
+./hostap.py wlan0
+```
+```
+dhclient wlan0
+ping -I wlan0 192.168.0.1
+```
+
+- Verify the test case in [test-queue-leak-freebsd.py](framework/test-queue-leak-freebsd.py) contains the appropriate IP addresses.
+
+- Refer to the [Troubleshooting](https://github.com/domienschepers/wifi-framework/blob/master/docs/USAGE.md#troubleshooting) of the Wi-Fi Framework.
+
+## Queueing SA Query Requests
+
+As a proof-of-concept we provide a test case for the [Wi-Fi Framework](https://github.com/domienschepers/wifi-framework) (see [usage instructions](https://github.com/domienschepers/wifi-framework/blob/master/docs/USAGE.md)).
+
+Note the proof-of-concept also results in a [Wi-Fi Deauthentication](https://github.com/domienschepers/wifi-deauthentication) or denial-of-service attack.
+
+#### Description
+
+In this [test case](framework/test-queue-saquery.py), we transmit an association request with the sleep-bit set causing frames to be buffered by the access point.
+Note that not all frames are bufferable (IEEE 802.11-2020; *"11.2.2 Bufferable MMPDUs"*) and the association response will be transmitted.
+Since our association request is rejected, the access point will initiate the SA Query procedure.
+The SA Query request is a bufferable frame and therefore it will be buffered by the access point's kernel, consequently causing the procedure to time out.
+Then, we transmit a second association request which will now be accepted by the access point since the security association expired.
+When the connection establishment fails to proceed (since we are only transmitting an association request), the client will be deauthenticated by the access point.
+Finally, the test case listens for the unprotected deauthentication frame (that is, unprotected since the access point no longer posseses a pairwise key) which proves the SA Query procedure has timed out. 
+
+#### Start the Access Point
+
+Using the Wi-Fi Framework, load the appropriate network configuration to use WPA3-Personal with Management Frame Protection (MFP):
+
+```
+cd setup; ./load-config.sh wpa3-personal-pmf
+```
+
+Then start the access point:
+```
+./hostap.py wlan0 --ap
+```
+
+#### Run the Wi-Fi Framework Test Case
+
+Using the Wi-Fi Framework, load the appropriate network configuration to use WPA3-Personal with Management Frame Protection (MFP):
+
+```
+cd setup; ./load-config.sh wpa3-personal-pmf
+```
+
+Finally, we can run the client to execute the `queue-saquery` test case:
+
+```
+./run.py wlan1 queue-saquery
+```
+
+After successful execution, the test case will report an unprotected deauthentication frame from the AP.
+
+<p align="center">
+	<img width="750" src="framework/example-output-saquery.jpg">
+	<br />
+	<em>Example output for the queueing of SA Query requests on a system using Linux 5.17.6 and hostapd 2.10.</em>
+</p>
 
 ## Security Advisories
 
