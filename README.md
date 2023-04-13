@@ -140,6 +140,7 @@ At the time of writing, the following security advisories are available:
 - [Aruba Product Security Advisory](https://www.arubanetworks.com/assets/alert/ARUBA-PSA-2023-005.txt), *"All currently supported ArubaOS (...) versions are affected"*.
 - [Mist Security Advisory](https://www.mist.com/documentation/mist-security-advisory-bypassing-wi-fi-encryption-by-manipulating-transmit-queues/), *"Clients connecting to Mist Access Points could be targeted with this attack"*.
 - [Ruckus Networks](https://support.ruckuswireless.com/security_bulletins/317), *"Security Bulletin for CVE-2022-47522"*.
+- The Linux kernel vulnerability ([Section 3.5.1](https://papers.mathyvanhoef.com/usenix2023-wifi.pdf)) was patched in commit [a0761a3017](https://patchwork.kernel.org/project/linux-wireless/patch/20210816134424.28191-1-pali@kernel.org/) while we were doing the research. This patch was first part of Linux kernel 5.6.0 and was backported to older Linux kernels. Further updates [are being worked on](https://github.com/milankragujevic/openwrt-wr840n-v620-old/pull/4/commits/d54c91bd9ab3c54ee06923eafbd67047816a37e4).
 
 ## Talks
 
