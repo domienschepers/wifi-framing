@@ -14,7 +14,7 @@ More information is available on the [MacStealer: Wi-Fi Client Isolation Bypass]
 
 ## Leaking Frames from the FreeBSD Queue
 
-As a proof-of-concept we provide a test case for the [Wi-Fi Framework](https://github.com/domienschepers/wifi-framework) (see [usage instructions](https://github.com/domienschepers/wifi-framework/blob/master/docs/USAGE.md)).
+As a proof-of-concept we provide a test case for the [Wi-Fi Framework](https://github.com/domienschepers/wifi-framework) (see [usage instructions](https://github.com/domienschepers/wifi-framework/blob/master/docs/USAGE.md) - tested with commit [1f0a7f71](https://github.com/domienschepers/wifi-framework/commit/1f0a7f7137089e772e2481a130bd09701acfca0c)).
 
 #### Description
 
@@ -79,7 +79,7 @@ ping -I wlan0 192.168.0.1
 
 ## Queueing SA Query Requests
 
-As a proof-of-concept we provide a test case for the [Wi-Fi Framework](https://github.com/domienschepers/wifi-framework) (see [usage instructions](https://github.com/domienschepers/wifi-framework/blob/master/docs/USAGE.md)).
+As a proof-of-concept we provide a test case for the [Wi-Fi Framework](https://github.com/domienschepers/wifi-framework) (see [usage instructions](https://github.com/domienschepers/wifi-framework/blob/master/docs/USAGE.md) - tested with commit [1f0a7f71](https://github.com/domienschepers/wifi-framework/commit/1f0a7f7137089e772e2481a130bd09701acfca0c)).
 
 Note the proof-of-concept also results in a [Wi-Fi Deauthentication](https://github.com/domienschepers/wifi-deauthentication) or denial-of-service attack.
 
