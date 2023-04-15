@@ -8,7 +8,7 @@ Furthermore, we provide proof-of-concepts implemented as test cases for the [Wi-
 
 ## Wi-Fi Client Isolation Bypass
 
-The [MacStealer](https://github.com/vanhoefm/macstealer) repository provides a tool to test Wi-Fi networks for **client isolation bypasses (CVE-2022-47522). Our attack can intercept (steal) traffic toward other clients at the MAC layer**, even if clients are prevented from communicating with each other.
+The [MacStealer](https://github.com/vanhoefm/macstealer) repository provides a tool to test Wi-Fi networks for **client isolation bypasses ([CVE-2022-47522](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-47522)). Our attack can intercept (steal) traffic toward other clients at the MAC layer**, even if clients are prevented from communicating with each other.
 
 More information is available on the [MacStealer: Wi-Fi Client Isolation Bypass](https://github.com/vanhoefm/macstealer) repository.
 
@@ -128,7 +128,7 @@ After successful execution, the test case will report an unprotected deauthentic
 	<em>Example output for the queueing of SA Query requests on a system using Linux 5.17.6 and hostapd 2.10.</em>
 </p>
 
-## Security Advisories
+## Security Advisories and Patches
 
 The Wi-Fi Alliance and affected parties were informed on all discovered issues.
 
@@ -140,7 +140,11 @@ At the time of writing, the following security advisories are available:
 - [Aruba Product Security Advisory](https://www.arubanetworks.com/assets/alert/ARUBA-PSA-2023-005.txt), *"All currently supported ArubaOS (...) versions are affected"*.
 - [Mist Security Advisory](https://www.mist.com/documentation/mist-security-advisory-bypassing-wi-fi-encryption-by-manipulating-transmit-queues/), *"Clients connecting to Mist Access Points could be targeted with this attack"*.
 - [Ruckus Networks](https://support.ruckuswireless.com/security_bulletins/317), *"Security Bulletin for CVE-2022-47522"*.
+
+The following patches address our security issues:
+- FreeBSD patch to [fail for unicast traffic without unicast key](https://github.com/freebsd/freebsd-src/commit/61605e0ae5d8f34b89b8e71e393f3006f511e86a).
 - The Linux kernel vulnerability ([Section 3.5.1](https://papers.mathyvanhoef.com/usenix2023-wifi.pdf)) was patched in commit [a0761a3017](https://patchwork.kernel.org/project/linux-wireless/patch/20210816134424.28191-1-pali@kernel.org/) while we were doing the research. This patch was first part of Linux kernel 5.6.0 and was backported to older Linux kernels. Further updates [are being worked on](https://github.com/milankragujevic/openwrt-wr840n-v620-old/pull/4/commits/d54c91bd9ab3c54ee06923eafbd67047816a37e4).
+- [OpenWRT 22.03.4](https://openwrt.org/releases/22.03/changelog-22.03.4) addresses CVE-2022-47522 and more ([commitdiff](https://git.openwrt.org/?p=openwrt/openwrt.git;a=commitdiff;h=4ae854d05568bc36a4df2cb6dd8fb023b5ef9944)).
 
 ## Talks
 
