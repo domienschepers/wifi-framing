@@ -63,6 +63,7 @@ After successful execution, the test case will report our echo reply frame was e
 
 #### Troubleshooting
 
+- For supported hardware and practical information, refer to [Wi-Fi in FreeBSD](https://github.com/domienschepers/wifi-bsd/tree/main/freebsd).
 - Verify the client can connect to the FreeBSD AP and successfully issue ping commands:
 
 ```
@@ -145,6 +146,9 @@ The following patches address our security issues:
 - FreeBSD patch to [fail for unicast traffic without unicast key](https://github.com/freebsd/freebsd-src/commit/61605e0ae5d8f34b89b8e71e393f3006f511e86a).
 - The Linux kernel vulnerability ([Section 3.5.1](https://papers.mathyvanhoef.com/usenix2023-wifi.pdf)) was patched in commit [a0761a3017](https://patchwork.kernel.org/project/linux-wireless/patch/20210816134424.28191-1-pali@kernel.org/) while we were doing the research. This patch was first part of Linux kernel 5.6.0 and was backported to older Linux kernels. Further updates [are being worked on](https://github.com/milankragujevic/openwrt-wr840n-v620-old/pull/4/commits/d54c91bd9ab3c54ee06923eafbd67047816a37e4).
 - [OpenWRT 22.03.4](https://openwrt.org/releases/22.03/changelog-22.03.4) addresses CVE-2022-47522 and more ([commitdiff](https://git.openwrt.org/?p=openwrt/openwrt.git;a=commitdiff;h=4ae854d05568bc36a4df2cb6dd8fb023b5ef9944)).
+
+The following standard changes have been proposed:
+- Reassociating STA recognition ([docx](https://mentor.ieee.org/802.11/dcn/23/11-23-0537-00-000m-reassociating-sta-recognition.docx)).
 
 ## Talks
 
