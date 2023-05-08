@@ -145,7 +145,7 @@ At the time of writing, the following security advisories are available:
 
 The following patches address our security issues:
 - FreeBSD patch to [fail for unicast traffic without unicast key](https://github.com/freebsd/freebsd-src/commit/61605e0ae5d8f34b89b8e71e393f3006f511e86a).
-- The Linux kernel vulnerability ([Section 3.5.1](https://papers.mathyvanhoef.com/usenix2023-wifi.pdf)) was patched in commit [a0761a3017](https://patchwork.kernel.org/project/linux-wireless/patch/20210816134424.28191-1-pali@kernel.org/) while we were doing the research. This patch was first part of Linux kernel 5.6.0 and was backported to older Linux kernels. Recently, more patches were applied addressing a number of our issues, for example:
+- The Linux kernel vulnerability ([Section 3.5.1](https://papers.mathyvanhoef.com/usenix2023-wifi.pdf)) was patched in commit [a0761a3017](https://patchwork.kernel.org/project/linux-wireless/patch/20210816134424.28191-1-pali@kernel.org/) while we were doing the research. This patch was first part of Linux kernel 5.6.0 and was backported to older Linux kernels. Recently, Linux kernel 6.4-rc1 addressed a number of our issues, for example:
     - [wifi: mac80211: add flush_sta method](https://github.com/torvalds/linux/commit/d00800a289c9349bb659a698cbd7bc04521dc927)
     - [wifi: mac80211: flush queues on STA removal](https://github.com/torvalds/linux/commit/0b75a1b1e42e07ae84e3a11d2368b418546e2bec)
     - [wifi: ieee80211: correctly mark FTM frames non-bufferable](https://github.com/torvalds/linux/commit/2c9abe653bc5134eeab411c46dde008d8a1c37b0)
