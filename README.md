@@ -142,6 +142,7 @@ At the time of writing, the following security advisories are available:
 - [Mist Security Advisory](https://www.mist.com/documentation/mist-security-advisory-bypassing-wi-fi-encryption-by-manipulating-transmit-queues/), *"Clients connecting to Mist Access Points could be targeted with this attack"*.
 - [Ruckus Networks](https://support.ruckuswireless.com/security_bulletins/317), *"Security Bulletin for CVE-2022-47522"*.
 - [D-Link](https://supportannouncement.us.dlink.com/announcement/publication.aspx?name=SAP10328), *"Support Announcement for CVE-2022-47522"*.
+- [Siemens](https://cert-portal.siemens.com/productcert/html/ssa-516174.html), *"SCALANCE W1750D device is affected by Wi-Fi encryption bypass vulnerabilities"*.
 
 The following patches address our security issues:
 - FreeBSD patch to [fail for unicast traffic without unicast key](https://github.com/freebsd/freebsd-src/commit/61605e0ae5d8f34b89b8e71e393f3006f511e86a).
