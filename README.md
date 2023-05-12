@@ -8,7 +8,7 @@ Furthermore, we provide proof-of-concepts implemented as test cases for the [Wi-
 
 ## Wi-Fi Client Isolation Bypass
 
-The [MacStealer](https://github.com/vanhoefm/macstealer) repository provides a tool to test Wi-Fi networks for **client isolation bypasses ([CVE-2022-47522](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-47522)). Our attack can intercept (steal) traffic toward other clients at the MAC layer**, even if clients are prevented from communicating with each other.
+The [MacStealer](https://github.com/vanhoefm/macstealer) repository provides a tool to test Wi-Fi networks for **client isolation bypasses (CVE-PENDING). Our attack can intercept (steal) traffic toward other clients at the MAC layer**, even if clients are prevented from communicating with each other.
 
 More information is available on the [MacStealer: Wi-Fi Client Isolation Bypass](https://github.com/vanhoefm/macstealer) repository.
 
