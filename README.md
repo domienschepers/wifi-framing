@@ -168,7 +168,8 @@ Centre for Cybersecurity Belgium | Connect & Share 2023:
 Black Hat Asia 2023:
 - [Sweet Dreams: Abusing Sleep Mode to Break Wi-Fi Encryption and Disrupt WPA2/3 Networks](https://www.blackhat.com/asia-23/briefings/schedule/index.html#sweet-dreams-abusing-sleep-mode-to-break-wi-fi-encryption-and-disrupt-wpa-networks-30942)
 
-
+Workshop on Attacks in Cryptography 6:
+- [Framing Frames: Bypassing Wi-Fi Encryption by Manipulating Transmit Queues](https://www.cryptanalysis.fun)
 ## Publication
 
 This work is published at [USENIX Security 2023](https://www.usenix.org/conference/usenixsecurity23/presentation/schepers).
